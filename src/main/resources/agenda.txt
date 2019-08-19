@@ -1,6 +1,0 @@
-Nome: 123123, Telefones: [123233]
-Nome: leo, Telefones: [123]
-Nome: leoee, Telefones: [13321]
-Nome: Leo, Telefones: [123]
-Nome: Leonardo, Telefones: [47991411323]
-Nome: teste, Telefones: [234234234]

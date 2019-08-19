@@ -1,8 +1,11 @@
 import java.io.*;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 
 
 public class Terminal {
+    private static final String AGENDA_PATH = "src/main/resources/agenda.txt";
 
     public static void main(String[] args) throws IOException {
         Agenda agenda = new Agenda();
@@ -14,56 +17,69 @@ public class Terminal {
         Scanner ler = new Scanner(System.in);
         StringBuffer cmdOut = new StringBuffer();
 
-        System.out.println("------------------");
-        System.out.println("Bem vindo a agenda");
-        System.out.println("------------------");
-        System.out.println("Para adicionar um Contato na agenda insira 1");
-        System.out.println("Para listar os Contatos da agenda insira 2");
-        System.out.println("Para sair digite 9");
+        printMenu();
 
         do {
             try {
                 comando = Integer.valueOf(ler.nextLine());
 
-                if (comando == 1) {
-                    Integer c = 0;
-                    Set<String> fones = new HashSet<String>();
+                switch (comando) {
+                    case 1:
+                        leitor(AGENDA_PATH);
+                        break;
+                    case 2:
 
-                    System.out.println("Nome do Contato:");
-                    String nome = ler.nextLine();
+                        Integer c = 0;
+                        Set<String> fones = new HashSet<String>();
 
-                    System.out.println("Insira Um telefone para o contato");
-                    fones.add(ler.nextLine());
+                        System.out.println("Nome do Contato:");
+                        String nome = ler.nextLine();
 
-                    System.out.println("Insira mais um telefone para o contato");
+                        System.out.println("Insira Um telefone para o contato");
+                        fones.add(ler.nextLine());
 
+                        System.out.println("Insira mais um telefone para o contato, caso contrario apenas clique Enter;\"");
 
-                    do {
-                        line = ler.nextLine();
-                        if (line.length() != 0){
-                            fones.add(line);
-                            System.out.println("Insira mais um telefone para o contato, caso contrario apenas clique Enter;");
+                        do {
+                            line = ler.nextLine();
+                            if (line.length() != 0) {
+                                fones.add(line);
+                                System.out.println("Insira mais um telefone para o contato, caso contrario apenas clique Enter;");
+                            }
                         }
-                    }
-                    while (line.length() != 0);
+                        while (line.length() != 0);
 
-                    Contato contato = new Contato(nome, fones);
-                    agenda.addContato(contato);
-                    saveAgenda(contato);
+                        Contato contato = new Contato(nome, fones);
+                        agenda.addContato(contato);
+                        saveAgenda(contato);
 
-                    System.out.println("Contato adicionado com sucesso");
-
-                } else if (comando == 2){
-                    System.out.println("Nao implementado");
-
-                }else if (comando == 9){
-                    System.out.println("Programa finalizado");
-                    break;
-
-                } else {
-                    System.out.println("Comando não encontrado");
+                        System.out.println("Contato adicionado com sucesso");
+                        break;
+                    case 3:
+                        System.out.println("Comando não implementado");
+                        break;
+                    case 4:
+                        System.out.println("Comando não implementado");
+                        break;
+                    case 5:
+                        clearTheFile(AGENDA_PATH);
+                        break;
+                    case 6:
+                        System.out.println("Comando não implementado");
+                        break;
+                    case 7:
+                        System.out.println("Comando não implementado");
+                        break;
+                    case 8:
+                        printMenu();
+                        break;
+                    case 9:
+                        System.out.println("Programa finalizado");
+                        break;
+                    default:
+                        System.out.println("Comando não encontrado");
+                        break;
                 }
-
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -75,10 +91,8 @@ public class Terminal {
 
 
     private static void saveAgenda(Contato contato) throws IOException {
-        fileWrite(contato.toString(), "src/main/resources/agenda.txt");
+        fileWrite(contato.toString(), AGENDA_PATH);
     }
-
-
 
 
     private static void fileWrite(String text, String fileOut) throws IOException {
@@ -97,7 +111,6 @@ public class Terminal {
             if (out != null) out.close();
         }
     }
-
 
     private void file(String text, String fileOut) throws IOException {
         FileReader in = null;
@@ -120,4 +133,39 @@ public class Terminal {
             if (out != null) out.close();
         }
     }
+
+    private static void leitor(String path) throws IOException {
+        BufferedReader buffRead = new BufferedReader(new FileReader(path));
+        String linha = "";
+        while (true) {
+            if (linha != null) {
+                System.out.println(linha);
+
+            } else
+                break;
+            linha = buffRead.readLine();
+        }
+        buffRead.close();
+    }
+
+    private static void printMenu() throws IOException {
+        leitor("src/main/resources/menu.txt");
+    }
+
+    private static void clearTheFile(String path) throws IOException {
+        FileWriter fwOb = new FileWriter(path, false);
+        PrintWriter pwOb = new PrintWriter(fwOb, false);
+        pwOb.flush();
+        pwOb.close();
+        fwOb.close();
+        System.out.println("Limpeza concluida.");
+    }
+
+    private static void removeContatoFromAgenda(){
+
+    }
+
+
+
+
 }

@@ -7,9 +7,22 @@ public class Agenda {
     public Agenda() {
     }
 
+
+
     public String addContato(Contato contato){
         contatos.add(contato);
-        return "Contato Adicionado";
+        return "Contato: " + contato.toString() + " Adicionado com sucesso!";
+    }
+
+    public String rmContato(final String nome){
+        for (Contato c : contatos) {
+            if (c.getNome().equals(nome)) {
+                contatos.remove(c);
+                return "Contato: " + c + " Removido com sucesso!";
+            }
+        }
+
+        return "Contato de nome: " + nome + "não encontrado.";
     }
 
     public List<Contato> getContatos() {
