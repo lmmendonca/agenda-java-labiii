@@ -1,3 +1,6 @@
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+
 import java.io.*;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -6,6 +9,7 @@ import java.util.Set;
 
 public class Terminal {
     private static final String AGENDA_PATH = "src/main/resources/agenda.txt";
+    private static final String AGENDA_JSON_PATH = "src/main/resources/agenda.json";
 
     public static void main(String[] args) throws IOException {
         Agenda agenda = new Agenda();
@@ -53,6 +57,7 @@ public class Terminal {
                         agenda.addContato(contato);
                         saveAgenda(contato);
 
+
                         System.out.println("Contato adicionado com sucesso");
                         break;
                     case 3:
@@ -91,15 +96,16 @@ public class Terminal {
 
 
     private static void saveAgenda(Contato contato) throws IOException {
-        fileWrite(contato.toString(), AGENDA_PATH);
+        fileWrite(contato.toString(), AGENDA_PATH, true);
+        fileWrite(new Gson().toJson(contato), AGENDA_JSON_PATH, true);
     }
 
 
-    private static void fileWrite(String text, String fileOut) throws IOException {
+    private static void fileWrite(String text, String fileOut, Boolean append) throws IOException {
         FileWriter out = null;
 
         try {
-            out = new FileWriter(fileOut, true);
+            out = new FileWriter(fileOut, append);
             out.append(text + '\n');
 
 
