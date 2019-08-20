@@ -3,7 +3,7 @@
 ----------------------------------------------------------------------------
 Power by: Leonardo Maximino
 
-Comando disponiveis
+Comandos disponiveis
 
 Agenda:
 1 - Listar Contatos;
