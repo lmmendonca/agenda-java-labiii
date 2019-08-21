@@ -1,14 +1,41 @@
-import java.util.Set;
+import java.util.List;
 
 public class Contato {
-    private Integer id = 0;
+    private Integer id;
     private String nome;
-    private Set<String> telefone;
+    private List<String> telefones;
 
-    public Contato(String nome, Set<String> telefone) {
+    public Contato(Integer id, String nome, List<String> telefones) {
+        this.id = id;
         this.nome = nome;
-        this.telefone = telefone;
-        this.id += 1;
+        this.telefones = telefones;
+    }
+
+    public Contato addTelefone(String telefone){
+        telefones.add(telefone);
+        return this;
+    }
+
+    public Contato rmTelefone(String telefone){
+        telefones.remove(telefone);
+        return this;
+    }
+
+    public Contato putTelefone(String telefone){
+        for (String t : telefones) {
+            if (t.equals(telefone)) {
+                t = telefone;
+                System.out.println("Telefone alterado com sucesso!");
+                return this;
+            }
+        }
+        System.out.println("Telefone não encontrato!");
+        return this;
+    }
+
+    public Contato putNome(String nome){
+        this.nome = nome;
+        return this;
     }
 
     public String getNome() {
@@ -19,16 +46,24 @@ public class Contato {
         this.nome = nome;
     }
 
-    public Set<String> getTelefone() {
-        return telefone;
+    public List<String> getTelefone() {
+        return telefones;
     }
 
-    public void setTelefone(Set<String> telefone) {
-        this.telefone = telefone;
+    public void setTelefone(List<String> telefones) {
+        this.telefones = telefones;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
-        return "Nome: " + nome + ", Telefones: " + telefone;
+        return "Nome: " + nome + ", Telefones: " + telefones;
     }
 }

@@ -1,10 +1,7 @@
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import java.io.*;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 
 public class Terminal {
@@ -13,6 +10,8 @@ public class Terminal {
 
     public static void main(String[] args) throws IOException {
         Agenda agenda = new Agenda();
+
+        restorAgendaFromFile(agenda);
 
         Integer comando = 0;
 
@@ -34,7 +33,7 @@ public class Terminal {
                     case 2:
 
                         Integer c = 0;
-                        Set<String> fones = new HashSet<String>();
+                        List<String> fones = new ArrayList<>();
 
                         System.out.println("Nome do Contato:");
                         String nome = ler.nextLine();
@@ -42,7 +41,7 @@ public class Terminal {
                         System.out.println("Insira Um telefone para o contato");
                         fones.add(ler.nextLine());
 
-                        System.out.println("Insira mais um telefone para o contato, caso contrario apenas clique Enter;\"");
+                        System.out.println("Insira mais um telefone para o contato, caso contrario apenas clique Enter;");
 
                         do {
                             line = ler.nextLine();
@@ -53,7 +52,7 @@ public class Terminal {
                         }
                         while (line.length() != 0);
 
-                        Contato contato = new Contato(nome, fones);
+                        Contato contato = new Contato(agenda.size() + 1, nome, fones);
                         agenda.addContato(contato);
                         saveAgenda(contato);
 
@@ -154,6 +153,22 @@ public class Terminal {
         buffRead.close();
     }
 
+    private static String buildString(String path) throws IOException {
+        BufferedReader buffRead = new BufferedReader(new FileReader(path));
+        String linha = "";
+        StringBuilder builder = new StringBuilder();
+        while (true) {
+            if (linha != null) {
+                builder.append(linha);
+
+            } else
+                break;
+            linha = buffRead.readLine();
+        }
+        buffRead.close();
+        return builder.toString();
+    }
+
     private static void printMenu() throws IOException {
         leitor("src/main/resources/menu.txt");
     }
@@ -169,6 +184,12 @@ public class Terminal {
 
     private static void removeContatoFromAgenda(){
 
+    }
+
+
+    private static void restorAgendaFromFile(Agenda agenda) throws IOException {
+        String json = buildString(AGENDA_JSON_PATH);
+        System.out.println(json);
     }
 
 

@@ -32,6 +32,11 @@ public class Agenda {
         this.contatos = contatos;
     }
 
+    public int size(){
+        return contatos.size();
+    }
+
+
     @Override
     public String toString() {
         return "Agenda{" +
