@@ -21,6 +21,11 @@
             <version>2.2.2</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>net.sourceforge.plantuml</groupId>
+            <artifactId>plantuml</artifactId>
+             <version>8059</version>
+        </dependency>
     </dependencies>
 
     <build>
