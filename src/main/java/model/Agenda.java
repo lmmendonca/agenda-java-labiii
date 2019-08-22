@@ -47,6 +47,17 @@ public class Agenda {
         return "Contato de nome: " + nome + "não encontrado.";
     }
 
+    public Contato findContato(final String nome){
+        for (Contato c : contatos) {
+            if (c.getNome().equals(nome)) {
+                return c;
+            }
+        }
+
+        System.out.println("Contato não encontrado.");
+        return null;
+    }
+
     public String limparAgenda(){
         setContatos(new ArrayList<>());
         save();
@@ -65,7 +76,7 @@ public class Agenda {
         return maiorId + 1;
     }
 
-    private void save() {
+    public void save() {
         try {
             FileHelper.write(new Gson().toJson(this), AGENDA_JSON_PATH, false);
         } catch (IOException e) {

@@ -18,21 +18,43 @@ public class Contato {
         return this;
     }
 
-    public Contato rmTelefone(String telefone){
-        telefones.remove(telefone);
-        return this;
+    public String removeTelefone(String telefone){
+        String t = findTelefone(telefone);
+        if (t != null) {
+            telefones.remove(t);
+            return "Telefone Removido com sucesso!";
+        }
+
+        return "Telefone não encontrato!";
     }
 
-    public Contato putTelefone(String telefone){
+    public String editaTelefone(String oldTel, String newTel){
+        String t = findTelefone(oldTel);
+        if (t != null) {
+            int id = telefones.indexOf(t);
+            telefones.set(id, newTel);
+            return "Telefone Editado com sucesso!";
+        }
+
+        return "Telefone não encontrato!";
+    }
+
+    public String findTelefone(String telefone){
         for (String t : telefones) {
             if (t.equals(telefone)) {
-                t = telefone;
-                System.out.println("Telefone alterado com sucesso!");
-                return this;
+                return t;
             }
         }
-        System.out.println("Telefone não encontrato!");
-        return this;
+        return null;
+    }
+
+    public boolean existTelefone(String telefone){
+        for (String t : telefones) {
+            if (t.equals(telefone)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Contato putNome(String nome){

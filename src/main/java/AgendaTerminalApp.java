@@ -33,19 +33,13 @@ public class AgendaTerminalApp {
                         comando = "";
                         break;
                     case "3":
-                        System.out.println("Comando não implementado");
+                        editaContato(agenda, scanner);
                         break;
                     case "4":
                         removeContato(agenda, scanner);
                         break;
                     case "5":
                         System.out.println(agenda.limparAgenda());
-                        break;
-                    case "6":
-                        System.out.println("Comando não implementado");
-                        break;
-                    case "7":
-                        System.out.println("Comando não implementado");
                         break;
                     case "8":
                         FileHelper.printFromFile(MENU_PATH);
@@ -66,13 +60,72 @@ public class AgendaTerminalApp {
 
     }
 
+
+    private static void editaContato(Agenda agenda, Scanner scanner) {
+        System.out.println("Informe o Nome do contato que deseja editar:");
+        String line = scanner.nextLine();
+
+        Contato contato = agenda.findContato(line);
+
+        if (contato != null) {
+            System.out.println("Informe o que deseja editar");
+            System.out.println("1 - Alterar Nome");
+            System.out.println("2 - Adicionar Telefone");
+            System.out.println("3 - Remover Telefone");
+            System.out.println("4 - Editar Telefone");
+            line = scanner.nextLine();
+
+            switch (line) {
+                case "1":
+                    System.out.println("Informe o novo nome do contato: ");
+                    line = scanner.nextLine();
+                    contato.setNome(line);
+                    agenda.save();
+                    System.out.println("Contato Editado com sucesso");
+                    break;
+                case "2":
+                    System.out.println("Informe o telefone que deseja adicionar: ");
+                    line = scanner.nextLine();
+                    contato.addTelefone(line);
+                    agenda.save();
+                    System.out.println("Contato Editado com sucesso");
+                    break;
+                case "3":
+                    System.out.println("Informe o telefone que deseja remover: ");
+                    line = scanner.nextLine();
+                    System.out.println(contato.removeTelefone(line));
+                    agenda.save();
+                    break;
+                case "4":
+                    System.out.println("Informe o telefone que deseja editar: ");
+                    String tel = scanner.nextLine();
+                    if (contato.existTelefone(tel)) {
+                        System.out.println("Informe o novo numero para o telefone: ");
+                        line = scanner.nextLine();
+                        System.out.println(contato.editaTelefone(tel, line));
+                        agenda.save();
+                        break;
+                    } else {
+                        System.out.println("Telefone não encontrado.");
+                    }
+                default:
+                    System.out.println("Comando não encontrado.");
+                    break;
+
+            }
+        } else {
+            System.out.println("Contato não encontrado");
+        }
+
+
+    }
+
     private static void removeContato(Agenda agenda, Scanner scanner) {
         System.out.println("Informe o Nome:");
         String nome = scanner.nextLine();
 
         System.out.println(agenda.deleteContato(nome));
     }
-
 
     private static void addContato(Agenda agenda, Scanner scanner) {
         List<String> fones = new ArrayList<>();
