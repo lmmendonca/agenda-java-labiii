@@ -10,7 +10,7 @@ Agenda:
 2 - Cadastrar Contato;
 3 - Editar Contato;
 4 - Remover Contato;
-5 - Limpar Agenda;
+5 - Limpar Agenda (Exclui todos os contatos);
 
 Sistema:
 8 - Exibir Menu;
