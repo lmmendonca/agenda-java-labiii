@@ -49,7 +49,7 @@ public class FileHelper {
         buffRead.close();
     }
 
-    public static void clean(String path) throws IOException {
+    public static void cleanFile(String path) throws IOException {
         FileWriter fwOb = new FileWriter(path, false);
         PrintWriter pwOb = new PrintWriter(fwOb, false);
         pwOb.flush();
@@ -57,29 +57,5 @@ public class FileHelper {
         fwOb.close();
         System.out.println("Limpeza concluida.");
     }
-
-    private void copy(String fileIn, String fileOut) throws IOException {
-        FileReader in = null;
-        FileWriter out = null;
-
-        try {
-            in = new FileReader(fileIn);
-            out = new FileWriter(fileOut);
-            int c;
-
-            while ((c = in.read()) != -1) {
-                out.write(c);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        } finally {
-            if (in != null) in.close();
-            if (out != null) out.close();
-        }
-    }
-
-
 
 }

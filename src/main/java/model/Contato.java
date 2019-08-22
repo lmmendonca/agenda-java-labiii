@@ -39,7 +39,7 @@ public class Contato {
         return "Telefone não encontrato!";
     }
 
-    public String findTelefone(String telefone){
+    private String findTelefone(String telefone){
         for (String t : telefones) {
             if (t.equals(telefone)) {
                 return t;
