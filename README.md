@@ -1,19 +1,49 @@
-## PROJETO DE LAB III
-Aluno Leonardo Maximino de Mendonça
+``` 
+ █████╗  ██████╗ ███████╗███╗   ██╗██████╗  █████╗     ██╗      █████╗ ██████╗     ██╗██╗██╗
+██╔══██╗██╔════╝ ██╔════╝████╗  ██║██╔══██╗██╔══██╗    ██║     ██╔══██╗██╔══██╗    ██║██║██║
+███████║██║  ███╗█████╗  ██╔██╗ ██║██║  ██║███████║    ██║     ███████║██████╔╝    ██║██║██║
+██╔══██║██║   ██║██╔══╝  ██║╚██╗██║██║  ██║██╔══██║    ██║     ██╔══██║██╔══██╗    ██║██║██║
+██║  ██║╚██████╔╝███████╗██║ ╚████║██████╔╝██║  ██║    ███████╗██║  ██║██████╔╝    ██║██║██║
+╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝    ╚══════╝╚═╝  ╚═╝╚═════╝     ╚═╝╚═╝╚═╝
+                                                                                            
+```
+Power By: Leonardo Maximino de Mendonça
 
-### Etapa 1
+## Quick-start
+Primeiro, tenha certeza que pussi instalado o Java vesão 8, & uma versão recente do maven.
 
-Fazer um sistema de agenda com interface no CMD.
+Abra o terminal e insira os seguintes comandos.
 
-Pré-requisitos:
-1. O sistema deve ser interativo;
-1. Deve ser possivel cadastrar, excluir, editar, procurar um contato;
-1. Um contato pode ter um ou mais telefones;
-1. Os contatos devem ser salvos em um arquivo de maneira permanente.
+```
+git clone git@trab.dc.unifil.br:leonardo.maximino/agenda-lab-iii.git
+cd agenda-lab-iii/
 
-### Etapa 2
+mvn install
 
-Fazer a documentacao do projeto.
+java -jar target/agenda-lab-iii-0.0.1.jar
 
-1. Diagrama UC, Classe e Sequencia com o PlantUml;
-2. WIKI do repositorio estilo "React Sketch.app";
+```
+
+
+## Docs
+As imagens dos diagramas estão disponiveis no diretorio ```docs/diagrams/images``` e o codigo utilizado para gerar eles estão no diretorio
+```docs/diagrams/src```
+
+## Menu de uso
+
+Comandos disponiveis
+
+Agenda:
+
+1. Listar Contatos;
+1. Cadastrar Contato;
+1. Editar Contato;
+1. Remover Contato;
+1. Limpar Agenda (Exclui todos os contatos);
+
+Sistema:
+
+1. Exibir Menu;
+1. Encerrar Sistema;
+----------------------------------------------------------------------------
+
